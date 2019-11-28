@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular6';
+  title = 'Form generator app';
+  scheme = {
+    bar: 'foo',
+    fn: name => 'I\'m inside of scheme object :)'
+  };
+
+  showGreetings(greets: string) {
+    console.log(greets);
+  }
 }

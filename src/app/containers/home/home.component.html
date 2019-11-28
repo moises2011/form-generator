@@ -1,0 +1,10 @@
+<div class="panel panel-default">
+  <header class="panel-heading">Home Form</header>
+  <section class="panel-body">
+    <app-dynamic-form (changes)="showChanges($event)"></app-dynamic-form>
+  </section>
+  <footer class="panel-footer">
+    <h6>Scheme</h6>
+    <output>{{scheme | json}}</output>
+  </footer>
+</div>
