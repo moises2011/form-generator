@@ -1,4 +1,4 @@
 <div class="form-group" [formGroup]="fGroup">
   <label [for]="control.key">{{control.label}}:</label>
-  <input [formControlName]="control.key" [type]="control.type" class="form-control" [id]="control.key">
+  <input [mask]="control.inputMask" [showMaskTyped]="true" [formControlName]="control.key" [type]="control.type" class="form-control" [id]="control.key">
 </div>

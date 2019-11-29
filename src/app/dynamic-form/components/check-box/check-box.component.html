@@ -1,5 +1,5 @@
 <div class="checkbox" [formGroup]="fGroup">
   <label [for]="control.key">
-    <input type="checkbox" [id]="control.key"> {{control.label}}
+    <input [formControlName]="control.key" type="checkbox" [id]="control.key"> {{control.label}}
   </label>
 </div>

@@ -1,9 +1,7 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { IControlField } from '../models/icontrol-field';
 import { DynamicFormService } from '../services/dynamic-form.service';
-import { Observable, Subscription, of } from 'rxjs';
-import { EventEmitter } from 'events';
+import { IControl, ISelectValue } from '../models/icontrol';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -11,28 +9,50 @@ import { EventEmitter } from 'events';
   styleUrls: ['./dynamic-form.component.css']
 })
 export class DynamicFormComponent implements OnInit {
-  @Output() public changes: EventEmitter = new EventEmitter();
-
-  public controls: IControlField[] = [
+  @Output() public changes: EventEmitter<any> = new EventEmitter();
+  public enumOptions: { [k:string]: ISelectValue[] } = {
+    country: [
+      {value: 'col', label:'Colombia'},
+      {value: 'bra', label:'Brasil'},
+      {value: 'mex', label:'Mexico'}
+    ]
+  };
+  public controls: IControl[] = [
     {
       key: 'email',
       label: 'Email address',
+      placeholder: 'test@test.com',
       type: 'text',
       controlType: 'inputText',
-      value: 'email@email.com',
       order: 1
     },{
       key: 'psw',
       label: 'Password',
+      placeholder: '*********',
       type: 'password',
+      controlType: 'inputText',
+      order: 2
+    },{
+      key: 'birthday',
+      label: 'Birthday',
+      inputMask: 'd0/M0/0000',
+      type: 'text',
       controlType: 'inputText',
       order: 2
     },{
       key: 'remember',
       label: 'Remember me',
-      type: 'password',
+      type: 'checkbox',
       controlType: 'checkbox',
       order: 3
+    },{
+      key: 'country',
+      label: 'Country',
+      type: 'select',
+      placeholder: 'Select a country',
+      controlType: 'select',
+      enumOptions: this.enumOptions.country,
+      order: 4
     }
   ];
   group: FormGroup;
@@ -48,7 +68,6 @@ export class DynamicFormComponent implements OnInit {
       this.changes.emit(value);
       //this._ref.detectChanges();
     });
-    console.log( this.changes)
   }
 
 }

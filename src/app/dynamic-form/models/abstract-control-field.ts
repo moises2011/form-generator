@@ -1,9 +1,9 @@
 import { Input, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { IControlField } from "./icontrol-field";
+import { IControl } from "./icontrol";
 
 export abstract class AbstractControlField implements OnInit{
-  @Input() control: IControlField;
+  @Input() control: IControl;
   @Input() fGroup: FormGroup;
 
   ngOnInit(): void {

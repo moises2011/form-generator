@@ -7,6 +7,9 @@
       <app-check-box *ngSwitchCase="'checkbox'"
         [control]="control"
         [fGroup]="group"></app-check-box>
+        <app-select *ngSwitchCase="'select'"
+          [control]="control"
+          [fGroup]="group"></app-select>
     </ng-container>
   </ng-container>
   <button type="submit" class="btn btn-default">Submit</button>

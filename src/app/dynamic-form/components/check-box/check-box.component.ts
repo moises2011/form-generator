@@ -1,6 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { IControlField } from '../../models/icontrol-field';
-import { FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
 import { AbstractControlField } from '../../models/abstract-control-field';
 
 @Component({
@@ -8,12 +6,8 @@ import { AbstractControlField } from '../../models/abstract-control-field';
   templateUrl: './check-box.component.html',
   styleUrls: ['./check-box.component.css']
 })
-export class CheckBoxComponent extends AbstractControlField implements OnInit {
+export class CheckBoxComponent extends AbstractControlField{
   constructor() {
     super();
   }
-
-  ngOnInit() {
-  }
-
 }

@@ -8,11 +8,14 @@ import { InputTextComponent } from './components/input-text/input-text.component
 import { CheckBoxComponent } from './components/check-box/check-box.component';
 import { DynamicFieldDirective } from './directives/dynamic-field.directive';
 import { SelectComponent } from './components/select/select.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 
+export let options: Partial<IConfig> | (() => Partial<IConfig>);
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(options)
   ],
   providers: [
     DynamicFormService
