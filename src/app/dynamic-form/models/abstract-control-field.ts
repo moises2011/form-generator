@@ -1,12 +1,13 @@
-import { Input, OnInit } from "@angular/core";
-import { FormGroup } from "@angular/forms";
-import { IControl } from "./icontrol";
+import { Input, OnInit, Output, EventEmitter } from "@angular/core";
+import { FormGroup, AbstractControl } from "@angular/forms";
+import { IControl, IValidation } from "./icontrol";
 
-export abstract class AbstractControlField implements OnInit{
+export abstract class AbstractControlField{
   @Input() control: IControl;
   @Input() fGroup: FormGroup;
+  @Output() validationMessagesChange: EventEmitter<IValidation> = new EventEmitter<IValidation>();
 
-  ngOnInit(): void {
-    console.log(this.fGroup);
+  getFormGroup(): AbstractControl {
+    return this.fGroup;
   }
 }

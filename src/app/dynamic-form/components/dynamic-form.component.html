@@ -1,16 +1,13 @@
-<ng-container [formGroup]="group">
-  <ng-container *ngFor="let control of controls;">
-    <ng-container [ngSwitch]="control.controlType">
-      <app-input-text *ngSwitchCase="'inputText'"
-        [control]="control"
-        [fGroup]="group"></app-input-text>
-      <app-check-box *ngSwitchCase="'checkbox'"
-        [control]="control"
-        [fGroup]="group"></app-check-box>
-        <app-select *ngSwitchCase="'select'"
-          [control]="control"
-          [fGroup]="group"></app-select>
-    </ng-container>
-  </ng-container>
-  <button type="submit" class="btn btn-default">Submit</button>
+<ng-container>
+  <ng-container *ngTemplateOutlet="headerTemplate || defaultHeader"></ng-container>
+  <ng-container appDynamicField [control]="control" [fGroup]="getGroup()"></ng-container>
+  <ng-container *ngTemplateOutlet="footerTemplate || defaultFooter"></ng-container>
 </ng-container>
+<!--HEADER-->
+<ng-template #defaultHeader>
+  <h4>Default title</h4>
+</ng-template>
+<!--FOOTER-->
+<ng-template #defaultFooter>
+  <button type="submit" class="btn btn-default">Submit</button>
+</ng-template>

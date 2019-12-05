@@ -1,18 +1,31 @@
+import { ValidatorFn, AsyncValidatorFn, FormControl } from "@angular/forms";
+
 export type ControlFieldType = 'select' | 'inputText' | 'checkbox';
-export type ControlType = 'ARRAY' | 'GROUP' | ControlFieldType;
+export type ControlType = 'array' | 'group' | ControlFieldType;
 export type ControlValue = number | string | boolean;
 export interface IControl {
   key: string;
   label: string;
-  inputMask?: string;
-  placeholder?: string;
-  type: string;
   value?: ControlValue;
-  controlType: ControlFieldType;
+  formControl?: FormControl;
+  placeholder?: string;
+  controlType: ControlType;
+  validations?: IValidation[];
+  inputMask?: string;
   enumOptions?: ISelectValue[];
-  order: number;
+  order?: number;
+  type?: string;
+  properties?: IControl[];
 };
 export interface ISelectValue {
   value: ControlValue;
   label: string;
 };
+
+export interface IValidation {
+  validation: ValidatorFn | AsyncValidatorFn;
+  message: string;
+  type: string;
+  activated: boolean;
+  async?: boolean;
+}

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { AbstractControlField } from '../../models/abstract-control-field';
-import { ISelectValue } from '../../models/icontrol';
+import { AbstractControlField } from '../../../models/abstract-control-field';
+import { ISelectValue } from '../../../models/icontrol';
 
 @Component({
   selector: 'app-select',

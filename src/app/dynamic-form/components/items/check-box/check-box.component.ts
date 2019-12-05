@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControlField } from '../../models/abstract-control-field';
+import { AbstractControlField } from 'src/app/dynamic-form/models/abstract-control-field';
 
 @Component({
   selector: 'app-check-box',

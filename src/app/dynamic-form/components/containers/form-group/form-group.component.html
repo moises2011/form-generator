@@ -1,0 +1,6 @@
+<fieldset  [formGroup]="getFormGroup()">
+  <legend>{{control.label}}</legend>
+  <ng-container *ngFor="let item of control?.properties">
+    <ng-container appDynamicField [control]="item" [fGroup]="getFormGroup()"></ng-container>
+  </ng-container>
+</fieldset>

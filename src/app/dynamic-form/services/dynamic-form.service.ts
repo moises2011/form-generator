@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, AbstractControl, AbstractControlDirective, FormArray } from '@angular/forms';
 import { IControlField } from '../models/icontrol-field';
 import { IControl } from '../models/icontrol';
 
@@ -10,11 +10,21 @@ export class DynamicFormService {
     private formBuilder: FormBuilder
   ) { }
 
-  buildControl(model: IControl[]): FormGroup {
-    const formGroup = {};
-    model.forEach((control: IControl) => {
-      formGroup[control.key] = new FormControl(control.value);
-    });
-    return new FormGroup(formGroup);
+  buildControl(model: IControl): AbstractControl {
+    const {properties, controlType} = model;
+    if(controlType === 'group' && properties.length > 0) {
+      const formGroup: FormGroup = new FormGroup({});
+      properties.forEach((control: IControl) => {
+        formGroup.registerControl(control.key, this.buildControl(control));
+      });
+      return formGroup;
+    } else if(controlType === 'array' && properties.length > 0) {
+      const formGroup: FormArray = new FormArray([]);
+      properties.forEach((control: IControl) => {
+        formGroup.push(this.buildControl(control));
+      });
+      return formGroup;
+    }
+    return new FormControl(model.value);
   }
 }
