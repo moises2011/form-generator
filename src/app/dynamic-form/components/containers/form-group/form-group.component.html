@@ -1,6 +1,6 @@
-<fieldset  [formGroup]="getFormGroup()">
+<div class="group" [formGroup]="getFormGroup()">
   <legend>{{control.label}}</legend>
-  <ng-container *ngFor="let item of control?.properties">
+  <div [ngClass]="{'group': ['group', 'array'].includes(item.controlType), 'group__child': !['group', 'array'].includes(item.controlType)}" *ngFor="let item of control?.properties">
     <ng-container appDynamicField [control]="item" [fGroup]="getFormGroup()"></ng-container>
-  </ng-container>
-</fieldset>
+  </div>
+</div>

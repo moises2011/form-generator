@@ -4,7 +4,7 @@ import { AbstractControlField } from 'src/app/dynamic-form/models/abstract-contr
 @Component({
   selector: 'app-check-box',
   templateUrl: './check-box.component.html',
-  styleUrls: ['./check-box.component.css']
+  styleUrls: ['./check-box.component.scss']
 })
 export class CheckBoxComponent extends AbstractControlField{
   constructor() {

@@ -6,6 +6,11 @@ export const enumOptions: { [k: string]: ISelectValue[] } = {
     { value: 'col', label: 'Colombia' },
     { value: 'bra', label: 'Brasil' },
     { value: 'mex', label: 'Mexico' }
+  ],
+  documentType: [
+    { value: 'cc', label: 'Id' },
+    { value: 'pas', label: 'Passport' },
+    { value: 'oth', label: 'Other' }
   ]
 };
 export const control: IControl = {
@@ -21,9 +26,9 @@ export const control: IControl = {
     order: 1,
     validations: [
       {
-        validation: 'email',
+        validation: 'required',
         activated: true,
-        message: 'Is not an email.',
+        message: 'The field is required.',
         async: false,
         type: 'email'
       }
@@ -34,7 +39,15 @@ export const control: IControl = {
     placeholder: '*********',
     type: 'password',
     controlType: 'inputText',
-    order: 2
+    order: 2,
+    validations: [
+      {
+        validation: 'required',
+        activated: true,
+        async: false,
+        type: 'email'
+      }
+    ]
   }, {
     key: 'birthday',
     label: 'Birthday',
@@ -54,6 +67,7 @@ export const control: IControl = {
     type: 'select',
     placeholder: 'Select a country',
     controlType: 'select',
+    enumOptions: 'country',
     order: 4
   }, {
     key: 'mother',
@@ -108,14 +122,26 @@ export const control: IControl = {
       controlType: 'group',
       order: 7,
       properties: [{
-        key: 'ref_personal_first_name',
-        label: 'references > personal > first name',
+        key: 'ref_personal_name',
+        label: 'references > personal > name',
         controlType: 'inputText',
         type: 'text',
         order: 2
       }, {
-        key: 'ref_personal_last_name',
-        label: 'references > personal > last name',
+        key: 'ref_personal_id',
+        label: 'references > personal > id',
+        controlType: 'select',
+        enumOptions: 'documentType',
+        order: 2
+      }, {
+        key: 'ref_personal_phone',
+        label: 'references > personal > phone',
+        controlType: 'inputText',
+        type: 'text',
+        order: 2
+      }, {
+        key: 'ref_personal_age',
+        label: 'references > personal > age',
         controlType: 'inputText',
         type: 'text',
         order: 2

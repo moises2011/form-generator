@@ -1,5 +1,5 @@
-<ng-container *ngIf="hasError">
-  <ng-container *ngFor="let error of fControl.errors">
-      <span>{{error | json}}</span>
+<ng-container *ngIf="errors">
+  <ng-container *ngFor="let key of arrayErrors">
+    <span class="error error--input">{{ key | i18nSelect : errorMessages }}</span>
   </ng-container>
 </ng-container>

@@ -1,8 +1,8 @@
-<ng-container *ngIf="!loading else defaultLoading">
+<div class="form-container" *ngIf="!loading else defaultLoading">
   <ng-container *ngTemplateOutlet="headerTemplate || defaultHeader"></ng-container>
   <ng-container appDynamicField [control]="control" [fGroup]="getGroup()"></ng-container>
   <ng-container *ngTemplateOutlet="footerTemplate || defaultFooter"></ng-container>
-</ng-container>
+</div>
 <!--HEADER-->
 <ng-template #defaultHeader>
   <h4>Default title</h4>

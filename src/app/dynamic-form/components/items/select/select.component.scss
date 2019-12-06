@@ -1,0 +1,19 @@
+.select {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  & label {}
+  & select {
+    border-radius: 5px;
+    border: 1px solid grey;
+    height: 30px;
+    padding: 0.4rem 0.8rem;
+    font-size: 1.4rem;
+    line-height: 1;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    & option {
+      font-size: 1.4rem;
+    }
+  }
+}

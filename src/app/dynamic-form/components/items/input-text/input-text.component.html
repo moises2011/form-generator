@@ -1,4 +1,6 @@
-<div class="form-group" [formGroup]="fGroup">
+<div class="input-text" [formGroup]="fGroup">
   <label [for]="control.key">{{control.label}}:</label>
-  <input [mask]="control.inputMask" [showMaskTyped]="true" [formControlName]="control.key" [type]="control.type" class="form-control" [id]="control.key">
+  <!--<input [mask]="control.inputMask" [showMaskTyped]="true" [formControlName]="control.key" [type]="control.type" [id]="control.key">-->
+  <input [formControlName]="control.key" [type]="control.type" [id]="control.key">
+  <app-message-error *ngIf="control.validations" [errors]="errors" [validations]="control.validations"></app-message-error>
 </div>

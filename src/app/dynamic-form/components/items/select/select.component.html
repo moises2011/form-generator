@@ -1,6 +1,6 @@
-<div class="form-group" [formGroup]="fGroup">
+<div class="select" [formGroup]="fGroup">
   <label [for]="control.key">{{ control.label }}:</label>
-  <select [formControlName]="control.key" [id]="control.key" class="form-control">
+  <select [formControlName]="control.key" [id]="control.key">
     <option disabled selected>{{ control.placeholder }}</option>
     <ng-container *ngFor="let item of control.enumOptions">
       <option [ngValue]="item.value">{{ item.label }}</option>

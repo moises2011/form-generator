@@ -1,23 +1,29 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { IValidation } from '../../../models/icontrol';
-import { FormControl } from '@angular/forms';
+import { ValidationErrors } from '@angular/forms';
+import { defaultErrorMessages } from './messages';
 
 @Component({
   selector: 'app-message-error',
   templateUrl: './message-error.component.html',
-  styleUrls: ['./message-error.component.css']
+  styleUrls: ['./message-error.component.scss']
 })
-export class MessageErrorComponent {
-  @Input() fControl: FormControl;
-  @Input() validations: IValidation[];
+export class MessageErrorComponent implements OnInit {
+  @Input() errors: ValidationErrors | null;
+  @Input() validations: IValidation[] = [];
+  errorMessages = defaultErrorMessages;
   constructor() {}
 
-  get hasError() {
-    console.log(this.fControl.errors);
-    return this.fControl && this.fControl.errors && this.fControl.dirty && this.fControl.touched;
+  get arrayErrors() {
+    return Object.keys(this.errors);
   }
 
-  getMessageError(token: any) {
-    return this.validations.filter((validation: IValidation) => validation.validation === token);
+  ngOnInit(): void {
+    this.validations.forEach((validator: IValidation) => {
+      const {validation, message} = validator;
+      if(message) {
+        this.errorMessages[validation] = message;
+      }
+    });
   }
 }

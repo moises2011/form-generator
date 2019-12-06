@@ -5,7 +5,7 @@ import { AbstractControl } from '@angular/forms';
 @Component({
   selector: 'app-form-group',
   templateUrl: './form-group.component.html',
-  styleUrls: ['./form-group.component.css']
+  styleUrls: ['./form-group.component.scss']
 })
 export class FormGroupComponent extends AbstractControlField implements OnInit {
 

@@ -6,7 +6,7 @@ import { DynamicFormService } from 'src/app/dynamic-form/services/dynamic-form.s
 @Component({
   selector: 'app-form-array',
   templateUrl: './form-array.component.html',
-  styleUrls: ['./form-array.component.css']
+  styleUrls: ['./form-array.component.scss']
 })
 export class FormArrayComponent extends AbstractControlField implements OnInit, OnChanges {
   constructor(
@@ -16,11 +16,9 @@ export class FormArrayComponent extends AbstractControlField implements OnInit, 
   }
 
   ngOnInit() {
-    console.log(this.control.key, '[ARRAY] > ', this.getFormGroup());
   }
 
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
-    console.log(this.control.key, '[ARRAY] > ', this.getFormGroup());
   }
 
   get items() {
@@ -28,8 +26,7 @@ export class FormArrayComponent extends AbstractControlField implements OnInit, 
   }
 
   addItem() {
-    const control = this.dynamicFormService.buildControl(this.control.properties[0]);
-    console.log(control);
+    const control = this.dynamicFormService.buildControl(this.control.properties[0], {});
     this.items.push(control);
     this.control.properties.push(this.control.properties[0]);
   }

@@ -1,0 +1,21 @@
+:host {
+  width: 100%;
+}
+.group {
+  width: 100%;
+  padding: 0px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  & .group__child {
+    height: auto;
+    flex-basis: 31%;
+    margin: 1%;
+  }
+}
+legend {
+  font-size: 1.6rem;
+  text-transform: capitalize;
+}

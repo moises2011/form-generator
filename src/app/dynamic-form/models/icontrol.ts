@@ -12,7 +12,7 @@ export interface IControl {
   controlType: ControlType;
   validations?: IValidation[];
   inputMask?: string;
-  enumOptions?: ISelectValue[];
+  enumOptions?: ISelectValue[] | string;
   order?: number;
   type?: string;
   properties?: IControl[];
@@ -24,7 +24,7 @@ export interface ISelectValue {
 
 export interface IValidation {
   validation: string;
-  message: string;
+  message?: string;
   type: string;
   activated: boolean;
   async?: boolean;

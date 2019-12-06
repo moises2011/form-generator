@@ -1,5 +1,5 @@
 <ng-container [formGroup]="fGroup">
-  <fieldset [formArrayName]="control.key">
+  <fieldset class="array" [formArrayName]="control.key">
     <legend>{{control.label}}</legend>
     <ng-container *ngFor="let item of control?.properties; let idx = index">
       <ng-container appDynamicField [control]="item" [fGroup]="getFGroup(idx)"></ng-container>
