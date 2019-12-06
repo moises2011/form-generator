@@ -1,3 +1,5 @@
-<div *ngIf="hasError">
-  <span>{{validation.message}}</span>
-</div>
+<ng-container *ngIf="hasError">
+  <ng-container *ngFor="let error of fControl.errors">
+      <span>{{error | json}}</span>
+  </ng-container>
+</ng-container>

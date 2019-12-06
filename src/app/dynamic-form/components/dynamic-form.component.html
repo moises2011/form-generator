@@ -1,4 +1,4 @@
-<ng-container>
+<ng-container *ngIf="!loading else defaultLoading">
   <ng-container *ngTemplateOutlet="headerTemplate || defaultHeader"></ng-container>
   <ng-container appDynamicField [control]="control" [fGroup]="getGroup()"></ng-container>
   <ng-container *ngTemplateOutlet="footerTemplate || defaultFooter"></ng-container>
@@ -10,4 +10,7 @@
 <!--FOOTER-->
 <ng-template #defaultFooter>
   <button type="submit" class="btn btn-default">Submit</button>
+</ng-template>
+<ng-template #defaultLoading>
+  <h1>LOADING...</h1>
 </ng-template>

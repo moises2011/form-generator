@@ -7,12 +7,17 @@ import { FormControl } from '@angular/forms';
   templateUrl: './message-error.component.html',
   styleUrls: ['./message-error.component.css']
 })
-export class MessageErrorComponent{
-  @Input() control: FormControl;
-  validation: IValidation;
+export class MessageErrorComponent {
+  @Input() fControl: FormControl;
+  @Input() validations: IValidation[];
   constructor() {}
 
   get hasError() {
-    return this.control && this.control.hasError(this.validation.type) && this.control.dirty && this.control.touched;
+    console.log(this.fControl.errors);
+    return this.fControl && this.fControl.errors && this.fControl.dirty && this.fControl.touched;
+  }
+
+  getMessageError(token: any) {
+    return this.validations.filter((validation: IValidation) => validation.validation === token);
   }
 }

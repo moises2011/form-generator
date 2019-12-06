@@ -23,7 +23,7 @@ export interface ISelectValue {
 };
 
 export interface IValidation {
-  validation: ValidatorFn | AsyncValidatorFn;
+  validation: string;
   message: string;
   type: string;
   activated: boolean;

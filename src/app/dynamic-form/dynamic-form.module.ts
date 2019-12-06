@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DynamicFormComponent } from './components/dynamic-form.component';
-import { DynamicFormDirective } from './directives/dynamic-form.directive';
 import { DynamicFormService } from './services/dynamic-form.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextComponent } from './components/items/input-text/input-text.component';
@@ -41,7 +40,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     CheckBoxComponent,
     SelectComponent,
     FormGroupComponent,
-    FormArrayComponent
+    FormArrayComponent,
+    MessageErrorComponent
   ]
 })
 export class DynamicFormModule { }
