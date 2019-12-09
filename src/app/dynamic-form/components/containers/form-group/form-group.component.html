@@ -1,6 +1,6 @@
 <div class="group" [formGroup]="getFormGroup()">
   <legend>{{control.label}}</legend>
   <div [ngClass]="{'group': ['group', 'array'].includes(item.controlType), 'group__child': !['group', 'array'].includes(item.controlType)}" *ngFor="let item of control?.properties">
-    <ng-container appDynamicField [control]="item" [fGroup]="getFormGroup()"></ng-container>
+    <ng-container dynamicFormControl [control]="item" [fGroup]="getFormGroup()" (validationMessagesChange)="changeData($event)"></ng-container>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { IValidation } from '../../../models/icontrol';
 import { ValidationErrors } from '@angular/forms';
 import { defaultErrorMessages } from './messages';
@@ -6,7 +6,8 @@ import { defaultErrorMessages } from './messages';
 @Component({
   selector: 'app-message-error',
   templateUrl: './message-error.component.html',
-  styleUrls: ['./message-error.component.scss']
+  styleUrls: ['./message-error.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MessageErrorComponent implements OnInit {
   @Input() errors: ValidationErrors | null;

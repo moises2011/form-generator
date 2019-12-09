@@ -2,7 +2,7 @@
   <fieldset class="array" [formArrayName]="control.key">
     <legend>{{control.label}}</legend>
     <ng-container *ngFor="let item of control?.properties; let idx = index">
-      <ng-container appDynamicField [control]="item" [fGroup]="getFGroup(idx)"></ng-container>
+      <ng-container dynamicFormControl [control]="item" [fGroup]="getFGroup(idx)"></ng-container>
       <button (click)="removeItem(idx)">- {{idx}}</button>
     </ng-container>
     <button (click)="addItem()">+</button>

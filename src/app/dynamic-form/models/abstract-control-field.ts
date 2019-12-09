@@ -12,15 +12,45 @@ export abstract class AbstractControlField implements OnChanges{
   }
 
   get formControl(): FormGroup {
-    return <FormGroup> this.fGroup.get(this.control.key);
+    return <FormGroup>this.fGroup.get(this.control.key);
   }
 
-  get errors(): ValidationErrors  {
-    const {errors, touched} = this.formControl;
+  get formGroup(): AbstractControl {
+    return this.fGroup;
+  }
+
+  get errors(): ValidationErrors {
+    const { errors, touched } = this.formControl;
     return (errors && touched) ? errors : null;
   }
 
-  getFormGroup(): AbstractControl {
-    return this.fGroup;
+  /*public changeData($event: any) {
+    if (!$event) {
+      return;
+    }
+    $event.preventDefault();
+    $event.stopPropagation();
+    const value = $event.target.value;
+    console.log(value);
+    this.setOnChange(value);
   }
+
+  private setOnChange(value: string) {
+    if (this.control.onChange) {
+      this.control.onChange(
+        value,
+        this.schema,
+        this.group,
+        this.control
+      );
+      const { validationMessages } = this.dynamicFormService.setValidators(
+        this.schema.properties,
+        this.group,
+      );
+      this.validationMessagesChange.emit({
+        ...this.validationMessages,
+        ...validationMessages
+      });
+    }
+  }*/
 }

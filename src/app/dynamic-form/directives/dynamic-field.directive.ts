@@ -1,4 +1,4 @@
-import { Directive, Input, OnInit, ViewContainerRef, ComponentFactoryResolver, Output, OnDestroy, ComponentRef } from '@angular/core';
+import { Directive, Input, OnInit, ViewContainerRef, ComponentFactoryResolver, Output, OnDestroy, ComponentRef, ElementRef, OnChanges } from '@angular/core';
 import { InputTextComponent } from '../components/items/input-text/input-text.component';
 import { SelectComponent } from '../components/items/select/select.component';
 import { CheckBoxComponent } from '../components/items/check-box/check-box.component';
@@ -18,12 +18,11 @@ const componentMapper = {
 };
 
 @Directive({
-  selector: '[appDynamicField]'
+  selector: '[dynamicFormControl]'
 })
-export class DynamicFieldDirective extends AbstractControlField implements OnInit, OnDestroy{
-  componentRef: any;
-  componentMessagesRef: any;
-  validationMessagesChange$: Subscription;
+export class DynamicFieldDirective extends AbstractControlField implements OnInit, OnChanges, OnDestroy{
+  private componentRef: AbstractControlField;
+  private subscription: Subscription;
 
   constructor(
     private resolver: ComponentFactoryResolver,
@@ -36,20 +35,16 @@ export class DynamicFieldDirective extends AbstractControlField implements OnIni
     this.createComponent();
   }
 
-  createComponent() {
+  private createComponent(): void {
     const inputType = componentMapper[this.control.controlType];
     const factory = this.resolver.resolveComponentFactory(inputType);
-    // Add component
-    this.componentRef = this.container.createComponent(factory).instance;
+    this.componentRef = (<AbstractControlField>this.container.createComponent(factory).instance);
     this.componentRef.control = this.control;
     this.componentRef.fGroup = this.fGroup;
     this.componentRef.validationMessagesChange = this.validationMessagesChange;
-    this.validationMessagesChange$ = this.componentRef.validationMessagesChange.subscribe(
-      (val: any) => console.log(val)
-    );
   }
 
   ngOnDestroy(): void {
-    this.validationMessagesChange$.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }
