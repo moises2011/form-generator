@@ -1,0 +1,22 @@
+.star-rating {
+  display: flex;
+  flex-flow: column;
+  & .stars {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    & .star {
+      font-size: 12px;
+      font-weight: bold;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      &.active {
+        background-color: yellow;
+      }
+      &:hover:not(.active) {
+        background-color: gray;
+      }
+    }
+  }
+}

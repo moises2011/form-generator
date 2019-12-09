@@ -62,6 +62,11 @@ export const control: IControl = {
     controlType: 'checkbox',
     order: 3
   }, {
+    key: 'rating',
+    label: 'star rating',
+    controlType: 'starRating',
+    order: 5
+  }, {
     key: 'country',
     label: 'Country',
     type: 'select',
@@ -69,6 +74,15 @@ export const control: IControl = {
     controlType: 'select',
     enumOptions: 'country',
     order: 4
+  }, {
+    key: 'city',
+    label: 'city',
+    type: 'select',
+    placeholder: 'Select a city',
+    controlType: 'select',
+    enumOptions: 'city',
+    parentControlKey: 'country',
+    order: 5
   }, {
     key: 'mother',
     label: 'mother',

@@ -1,14 +1,25 @@
-import { Input, OnInit, Output, EventEmitter, OnChanges } from "@angular/core";
-import { FormGroup, AbstractControl, ValidationErrors } from "@angular/forms";
+import { Input, Output, EventEmitter, OnChanges, OnInit } from "@angular/core";
+import { FormGroup, AbstractControl, ValidationErrors, FormControl } from "@angular/forms";
 import { IControl, IValidation } from "./icontrol";
+import { from } from "rxjs";
 
-export abstract class AbstractControlField implements OnChanges{
+export abstract class AbstractControlField implements OnInit, OnChanges{
+  parentControl?: FormControl;
   @Input() control: IControl;
   @Input() fGroup: FormGroup;
   @Output() validationMessagesChange: EventEmitter<IValidation> = new EventEmitter<IValidation>();
 
+  ngOnInit(): void {
+    this.setParentControl();
+    if(this.parentControl) {
+      from(this.parentControl.valueChanges).subscribe((val: any)=> {
+        console.log('new parent value:', val);
+      });
+    }
+  }
+
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
-    console.log('Onchange', this.control.key);
+    console.debug('Onchange', this.control.key);
   }
 
   get formControl(): FormGroup {
@@ -17,6 +28,11 @@ export abstract class AbstractControlField implements OnChanges{
 
   get formGroup(): AbstractControl {
     return this.fGroup;
+  }
+
+  private setParentControl(): void {
+    const { parentControlKey } = this.control;
+    this.parentControl = <FormControl>this.fGroup.get(parentControlKey);
   }
 
   get errors(): ValidationErrors {

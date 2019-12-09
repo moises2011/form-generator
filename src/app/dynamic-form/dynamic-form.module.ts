@@ -8,9 +8,10 @@ import { CheckBoxComponent } from './components/items/check-box/check-box.compon
 import { DynamicFieldDirective } from './directives/dynamic-field.directive';
 import { SelectComponent } from './components/items/select/select.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { MessageErrorComponent } from './components/items/message-error/message-error.component';
+import { MessageErrorComponent } from './components/containers/message-error/message-error.component';
 import { FormGroupComponent } from './components/containers/form-group/form-group.component';
 import { FormArrayComponent } from './components/containers/form-array/form-array.component';
+import { StarRatingComponent } from './components/items/star-rating/star-rating.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 @NgModule({
@@ -30,7 +31,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     SelectComponent,
     MessageErrorComponent,
     FormGroupComponent,
-    FormArrayComponent
+    FormArrayComponent,
+    StarRatingComponent
   ],
   exports: [
     DynamicFormComponent
@@ -41,7 +43,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     SelectComponent,
     FormGroupComponent,
     FormArrayComponent,
-    MessageErrorComponent
+    MessageErrorComponent,
+    StarRatingComponent
   ]
 })
 export class DynamicFormModule { }

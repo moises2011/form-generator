@@ -1,0 +1,10 @@
+
+<div class="star-rating" [formGroup]="fGroup">
+  <label [for]="control.key">{{control.label}}:</label>
+  <input [hidden]="true" [formControlName]="control.key" [type]="control.type" [id]="control.key">
+  <h1>{{control.value}}</h1>
+  <div class="stars" *ngFor="let star of options">
+    <p class="star" [ngClass]="{'active':  getClass(star) }" (click)="setValue(star)">{{star}}</p>
+  </div>
+  <app-message-error *ngIf="control.validations" [errors]="errors" [validations]="control.validations"></app-message-error>
+</div>

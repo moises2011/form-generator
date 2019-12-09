@@ -1,6 +1,6 @@
 import { ValidatorFn, AsyncValidatorFn, FormControl } from "@angular/forms";
 
-export type ControlFieldType = 'select' | 'inputText' | 'checkbox';
+export type ControlFieldType = 'select' | 'inputText' | 'checkbox' | 'starRating';
 export type ControlType = 'array' | 'group' | ControlFieldType;
 export type ControlValue = number | string | boolean;
 export interface IControl {
@@ -16,6 +16,7 @@ export interface IControl {
   order?: number;
   type?: string;
   properties?: IControl[];
+  parentControlKey?: string;
 };
 export interface ISelectValue {
   value: ControlValue;

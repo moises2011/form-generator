@@ -16,7 +16,7 @@ export class DynamicFormComponent implements OnInit {
   public enumOptions: { [k:string]: ISelectValue[] };
   public control: IControl;
   public loading: boolean;
-
+  valueRating = 0;
   group: any;
   constructor(
     private dynamicFormService: DynamicFormService

@@ -1,4 +1,4 @@
-import { Directive, Input, OnInit, ViewContainerRef, ComponentFactoryResolver, Output, OnDestroy, ComponentRef, ElementRef, OnChanges } from '@angular/core';
+import { Directive, OnInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 import { InputTextComponent } from '../components/items/input-text/input-text.component';
 import { SelectComponent } from '../components/items/select/select.component';
 import { CheckBoxComponent } from '../components/items/check-box/check-box.component';
@@ -6,7 +6,8 @@ import { AbstractControlField } from '../models/abstract-control-field';
 import { Subscription } from 'rxjs';
 import { FormGroupComponent } from '../components/containers/form-group/form-group.component';
 import { FormArrayComponent } from '../components/containers/form-array/form-array.component';
-import { MessageErrorComponent } from '../components/items/message-error/message-error.component';
+import { MessageErrorComponent } from '../components/containers/message-error/message-error.component';
+import { StarRatingComponent } from '../components/items/star-rating/star-rating.component';
 
 const componentMapper = {
   group: FormGroupComponent,
@@ -14,13 +15,14 @@ const componentMapper = {
   inputText: InputTextComponent,
   select: SelectComponent,
   checkbox: CheckBoxComponent,
-  message: MessageErrorComponent
+  message: MessageErrorComponent,
+  starRating: StarRatingComponent
 };
 
 @Directive({
   selector: '[dynamicFormControl]'
 })
-export class DynamicFieldDirective extends AbstractControlField implements OnInit, OnChanges, OnDestroy{
+export class DynamicFieldDirective extends AbstractControlField implements OnInit, OnDestroy{
   private componentRef: AbstractControlField;
   private subscription: Subscription;
 
@@ -33,6 +35,9 @@ export class DynamicFieldDirective extends AbstractControlField implements OnIni
 
   ngOnInit(): void {
     this.createComponent();
+    if(this.parentControl) {
+
+    }
   }
 
   private createComponent(): void {
