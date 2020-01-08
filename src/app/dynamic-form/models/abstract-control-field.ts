@@ -1,25 +1,34 @@
-import { Input, Output, EventEmitter, OnChanges, OnInit } from "@angular/core";
+import { Input, Output, EventEmitter, OnInit, ChangeDetectorRef, OnDestroy } from "@angular/core";
 import { FormGroup, AbstractControl, ValidationErrors, FormControl } from "@angular/forms";
-import { IControl, IValidation } from "./icontrol";
-import { from } from "rxjs";
+import { DynamicForm } from "./icontrol";
+import { from, Subscription } from "rxjs";
 
-export abstract class AbstractControlField implements OnInit, OnChanges{
-  parentControl?: FormControl;
-  @Input() control: IControl;
-  @Input() fGroup: FormGroup;
-  @Output() validationMessagesChange: EventEmitter<IValidation> = new EventEmitter<IValidation>();
+export abstract class AbstractControlField implements OnInit, OnDestroy{
+
+  protected parentControl?: FormControl;
+  protected subscriptions: Subscription[] = [];
+  @Input() public control: DynamicForm.IControl;
+  @Input() public fGroup: FormGroup;
+  @Output() public validationMessagesChange: EventEmitter<DynamicForm.IValidation> = new EventEmitter<DynamicForm.IValidation>();
 
   ngOnInit(): void {
     this.setParentControl();
-    if(this.parentControl) {
-      from(this.parentControl.valueChanges).subscribe((val: any)=> {
-        console.log('new parent value:', val);
-      });
-    }
+    if(!this.parentControl) return;
+    this.subscriptions.push(
+      from(this.parentControl.valueChanges)
+        .subscribe(newValue => this.parentValueChanged(newValue))
+    );
   }
 
-  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
-    console.debug('Onchange', this.control.key);
+  ngOnDestroy(): void {
+    this.subscriptions.map(subscription => subscription.unsubscribe());
+  }
+
+  protected parentValueChanged(newValue: string): void {}
+
+  protected setParentControl(): void {
+    const { parentControlKey } = this.control;
+    this.parentControl = <FormControl>this.fGroup.get(parentControlKey);
   }
 
   get formControl(): FormGroup {
@@ -30,15 +39,11 @@ export abstract class AbstractControlField implements OnInit, OnChanges{
     return this.fGroup;
   }
 
-  private setParentControl(): void {
-    const { parentControlKey } = this.control;
-    this.parentControl = <FormControl>this.fGroup.get(parentControlKey);
-  }
-
   get errors(): ValidationErrors {
     const { errors, touched } = this.formControl;
     return (errors && touched) ? errors : null;
   }
+
 
   /*public changeData($event: any) {
     if (!$event) {

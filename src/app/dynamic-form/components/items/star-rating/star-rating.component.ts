@@ -1,6 +1,7 @@
-import { Component, OnInit, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, OnInit, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AbstractControlField } from 'src/app/dynamic-form/models/abstract-control-field';
+import { DynamicForm } from 'src/app/dynamic-form/models/icontrol';
 
 @Component({
   selector: 'app-star-rating',
@@ -16,6 +17,7 @@ import { AbstractControlField } from 'src/app/dynamic-form/models/abstract-contr
 })
 export class StarRatingComponent extends AbstractControlField implements OnInit  {
   options = [1,2,3,4,5];
+  control: DynamicForm.IStarControl;
   constructor() {
     super();
   }

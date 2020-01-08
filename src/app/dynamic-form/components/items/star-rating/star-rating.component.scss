@@ -4,18 +4,18 @@
   & .stars {
     width: 100%;
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row nowrap;
     & .star {
-      font-size: 12px;
+      font-size: 2.2rem;
       font-weight: bold;
-      width: 30px;
-      height: 30px;
+      width: 3rem;
+      height: 3rem;
       text-align: center;
       &.active {
-        background-color: yellow;
+        color: yellow;
       }
       &:hover:not(.active) {
-        background-color: gray;
+        color: gray;
       }
     }
   }

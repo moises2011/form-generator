@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControlField } from '../../../models/abstract-control-field';
+import { DynamicForm } from 'src/app/dynamic-form/models/icontrol';
 
 @Component({
   selector: 'app-input-text',
@@ -8,6 +9,7 @@ import { AbstractControlField } from '../../../models/abstract-control-field';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputTextComponent extends AbstractControlField {
+  control: DynamicForm.IInputControl;
   constructor() {
     super();
   }

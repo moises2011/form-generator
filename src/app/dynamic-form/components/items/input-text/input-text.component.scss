@@ -2,20 +2,20 @@
   display: block;
 }
 .input-text {
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   display: flex;
   flex-flow: column;
   width: 100%;
   label {
   }
   input {
-    border-radius: 5px;
-    border: 1px solid grey;
-    height: 30px;
+    border-radius: 0.5rem;
+    border: 0.1rem solid grey;
+    height: 3rem;
     padding: 0.4rem 0.8rem;
     line-height: 1;
     font-size: 1.2rem;
     box-sizing: border-box;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
   }
 }

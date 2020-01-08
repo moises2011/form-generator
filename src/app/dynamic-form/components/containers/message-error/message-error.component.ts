@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { IValidation } from '../../../models/icontrol';
+import { DynamicForm } from '../../../models/icontrol';
 import { ValidationErrors } from '@angular/forms';
 import { defaultErrorMessages } from './messages';
 
@@ -11,7 +11,7 @@ import { defaultErrorMessages } from './messages';
 })
 export class MessageErrorComponent implements OnInit {
   @Input() errors: ValidationErrors | null;
-  @Input() validations: IValidation[] = [];
+  @Input() validations: DynamicForm.IValidation[] = [];
   errorMessages = defaultErrorMessages;
   constructor() {}
 
@@ -20,7 +20,7 @@ export class MessageErrorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.validations.forEach((validator: IValidation) => {
+    this.validations.forEach((validator: DynamicForm.IValidation) => {
       const {validation, message} = validator;
       if(message) {
         this.errorMessages[validation] = message;

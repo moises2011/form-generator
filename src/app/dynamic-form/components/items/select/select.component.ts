@@ -1,6 +1,7 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { AbstractControlField } from '../../../models/abstract-control-field';
-import { ISelectValue } from '../../../models/icontrol';
+import { ControlDataService } from 'src/app/dynamic-form/services/control-data.service';
+import { DynamicForm } from 'src/app/dynamic-form/models/icontrol';
 
 @Component({
   selector: 'app-select',
@@ -9,7 +10,16 @@ import { ISelectValue } from '../../../models/icontrol';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectComponent extends AbstractControlField {
-  constructor() {
+  control: DynamicForm.ISelectControl;
+  constructor(
+    protected cd: ChangeDetectorRef,
+    protected externalData: ControlDataService) {
     super();
+  }
+
+  parentValueChanged(newValue: string) {
+    console.debug('parent change value', newValue);
+    this.control.enumOptions = this.externalData['getCityByCountry'](newValue);
+    this.cd.detectChanges();
   }
 }

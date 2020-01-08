@@ -12,6 +12,8 @@ import { MessageErrorComponent } from './components/containers/message-error/mes
 import { FormGroupComponent } from './components/containers/form-group/form-group.component';
 import { FormArrayComponent } from './components/containers/form-array/form-array.component';
 import { StarRatingComponent } from './components/items/star-rating/star-rating.component';
+import { ControlDataService } from './services/control-data.service';
+import { ControlValidationsService } from './services/control-validations.service';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 @NgModule({
@@ -21,7 +23,9 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     NgxMaskModule.forRoot(options)
   ],
   providers: [
-    DynamicFormService
+    DynamicFormService,
+    ControlValidationsService,
+    ControlDataService
   ],
   declarations: [
     DynamicFormComponent,

@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input, TemplateRef, ViewEncapsulation } from '@angular/core';
-import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { DynamicFormService } from '../services/dynamic-form.service';
-import { IControl, ISelectValue } from '../models/icontrol';
+import { DynamicForm } from '../models/icontrol';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -13,8 +12,8 @@ export class DynamicFormComponent implements OnInit {
   @Input() headerTemplate: TemplateRef<any>;
   @Input() footerTemplate: TemplateRef<any>;
   @Output() public changes: EventEmitter<any> = new EventEmitter();
-  public enumOptions: { [k:string]: ISelectValue[] };
-  public control: IControl;
+  public enumOptions: DynamicForm.EnumOptions;
+  public control: DynamicForm.Control;
   public loading: boolean;
   valueRating = 0;
   group: any;

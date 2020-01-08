@@ -1,7 +1,7 @@
-import { ISelectValue, IControl } from "../models/icontrol";
+import { DynamicForm } from "../models/icontrol";
 import { Validators } from "@angular/forms";
 
-export const enumOptions: { [k: string]: ISelectValue[] } = {
+export const enumOptions: DynamicForm.EnumOptions = {
   country: [
     { value: 'col', label: 'Colombia' },
     { value: 'bra', label: 'Brasil' },
@@ -13,7 +13,7 @@ export const enumOptions: { [k: string]: ISelectValue[] } = {
     { value: 'oth', label: 'Other' }
   ]
 };
-export const control: IControl = {
+export const control: DynamicForm.Control = {
   key: 'personal_info',
   label: 'Personal info',
   controlType: 'group',
